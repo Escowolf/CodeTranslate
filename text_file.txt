@@ -1,1 +1,2 @@
-Olá, mundo
+IF ( num < 1 OR num > 10 ) THEN PRINT \"That is not
+between 1 and 10\” END IF
