@@ -1,2 +1,39 @@
-IF ( num < 1 OR num > 10 ) THEN PRINT \"That is not
-between 1 and 10\” END IF
+
+var num : number = Number(prompt("Digita aí: ")) ;
+var num1 : number = 2;
+var num2 : number = 2;
+
+function move ( distanceInMeters : number , name : string ) : void {
+  console.log ( name + " moved " + distanceInMeters + "m." ) ;
+}
+
+while (num != 8){
+    console.log(num)
+    if ( num < 1 || num > 10 ) {
+        console.log ( "That is not between 1 and 10" ) ;
+        break;
+    }else{
+        num++;
+    }
+}
+
+function calc (num1 : number,num2 : number) : void{
+    var soma : number = num1 + num2 ;
+    var sub : number = num1 - num2;
+    var mult : number = num1*num2;
+    var div : number = num1/num2;
+
+    console.log("Soma="+soma+" Sub="+sub+" Mult="+mult+" Div="+div);
+}
+
+move ( 2 , "2" );
+calc(num1,num2);
+
+
+// declaração, implementação e chamada de funções;
+// ○ if-then-elses e for/while;
+// ○ entradas e saídas pelo terminal;
+// ○ instruções de atribuição;
+// ○ expressões numéricas e booleanas;
+
+  

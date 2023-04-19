@@ -1,5 +1,6 @@
 { pkgs }: {
   deps = [
+    pkgs.adoptopenjdk-bin
     pkgs.python310Full
     pkgs.replitPackages.prybar-python310
     pkgs.replitPackages.stderred
