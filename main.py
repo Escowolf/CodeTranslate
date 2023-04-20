@@ -8,46 +8,20 @@ text3 = text2.replace(": number","int")
 text4 = text3.replace(": string","string")
 text5 = text4.replace(": void","void")
 
-
 list_of_tokens = text5.split();
 
-aspa1 = list_of_tokens.index("(")
-aspa2 = list_of_tokens.index(")")
-
-#print(aspa1)
-#print(aspa2)
-
-param1 = list_of_tokens[aspa1:aspa2+1]
-
-param = list_of_tokens[aspa1:aspa2+1]
-#param1.remove(",")
-
-#print(param1)
-
-for index, x in enumerate(param1):
-  if x == "(" or x == ",":
-    #print(x)
-    par1 = param[index+1];
-    param[index+1] = param[index+2]
-    param[index+2] = par1
-    
-#print(param)
-#print(text)
-
-#print(text5)
-
-for index, x in enumerate(param):
-  list_of_tokens[aspa1+index] = x;
-
-#print(list_of_tokens_text4)
-
 text = ""
+arrayText = []
+arrayText2 = []
 
 for x in list_of_tokens:
   text = text + " " + x
   if x == "{" or x == "}" or x == ";":
     text = text + "\n"
+    arrayText.append(text)
 
+
+# arrayText2.append(arrayText[len(arrayText)-1])
 
 import re
 
@@ -55,22 +29,20 @@ import re
 typescript_code = text
 
 # converte variáveis TypeScript em Java
-java_code = re.sub(r'var (\w+)\s*:\s*(\w+)\s*=\s*(.*);', r'\2 \1 = \3;', typescript_code)
+java_code = re.sub(r'var (\w+)\s*\s*(\w+)\s*=\s*(.*);', r'\2 \1 = \3;', typescript_code)
 
 # converte métodos TypeScript em Java
-java_code = re.sub(r'public (\w+)\s*\(\s*([^)]*)\s*\)\s*\s*(\w+)\s*\{([^}]*)\}', r'public \3 \1(\2) {\4}', java_code)
+java_code = re.sub(r'function (\w+)\s*\(\s*([^)]*)\s*\)\s*\s*(\w+)\s*\{([^}]*)\}', r'public \3 \1 ( \2 ) { \4 }', java_code)
 
-# converte chamadas de console.log em Java
-java_code = re.sub(r'console.log\s*\(\s*"([^"]*)"\s*\);', r'System.out.println("\1");', java_code)
+# java_code = re.sub(r'(\s*(\w+)\s+(\w+)\s*,\s*(\w+)\s+(\w+)\s*,\s*(\w+)\s+(\w+)\s*\)\s*', r'\2 \1 , \4  \3 , \6 \5', java_code)
 
-# converte operador lógico || em Java
-java_code = re.sub(r'\|\|', r'||', java_code)
-
-# converte a chamada do método move em Java
-java_code = re.sub(r'move\s*\(\s*(\d+)\s*,\s*(\d+)\s*\);', r'move(\1, "\2");', java_code)
-
-# adiciona tipos genéricos às chamadas do console.log em Java 8
-java_code = re.sub(r'System.out.println\("(.*)"\);', r'System.out.println((Object) "\1");', java_code)
+java_code = re.sub(r'\( \s*(\w+)\s+(\w+)\s*,\s*(\w+)\s+(\w+)', r'( \2 \1 , \4  \3', java_code)
 
 # imprime o código Java gerado
 print(java_code)
+
+arrayText2 = java_code.split('\n')
+
+path = "Main.java"
+write_on_file = lambda f, arrayText2 : [f.write("\n" + nline) for nline in arrayText2]
+write_on_file (open (path, "w"), arrayText2)
