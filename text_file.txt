@@ -1,5 +1,19 @@
 
-var num : number = Number(prompt("Digita aí: ")) ;
+function move ( distanceInMeters : number , name : string ) : void {
+  console.log ( name + " moved " + distanceInMeters + "m." ) ;
+}
+
+function calc ( num1 : number , num2 : number ) : void {
+    var soma : number = num1 + num2 ;
+    var sub : number = num1 - num2 ;
+    var mult : number = num1 * num2 ;
+    var div : number = num1 / num2 ;
+
+    console.log ( "Soma="+soma+" Sub="+sub+" Mult="+mult+" Div=" + div ) ;
+}
+
+var num : number = Number ( prompt ( " Digita aí : " ) ) ;
+var strin : string = prompt ( " Digita aí : " ) ;
 var num1 : number = 2 ;
 var num2 : number = 2 ;
 
@@ -13,18 +27,7 @@ while ( num != 8 ) {
     }
 }
 
-function move ( distanceInMeters : number , name : string ) : void {
-  console.log ( name + " moved " + distanceInMeters + "m." ) ;
-}
 
-function calc ( num1 : number , num2 : number ) : void {
-    var soma : number = num1 + num2 ;
-    var sub : number = num1 - num2 ;
-    var mult : number = num1 * num2 ;
-    var div : number = num1 / num2 ;
-
-    console.log ( "Soma="+soma+" Sub="+sub+" Mult="+mult+" Div=" + div ) ;
-}
 
 move ( 2 , "2" ) ;
 calc ( num1 , num2 ) ;
